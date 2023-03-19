@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+        {% for user in users %}
+        {% for teacher in teachers %}
+        <form action="/update/{{user['id']}}" method="POST">
+          <div class="form-group">
+            <input type="text" name="fname" value="{{ user['fname'] }}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="lname" value="{{ user['lname'] }}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" value="{{ user['email'] }}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="title" value="{{ teacher['title'] }}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="degree" value="{{ teacher['degree'] }}" class="form-control">
+          </div>
+          <div class="form-group" style="display: none;">
+            <input type="text" name="role" value="teacher" class="form-control">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Змінити
+            </button>
+          </div>
+        </form>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

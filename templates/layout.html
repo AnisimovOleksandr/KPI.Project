@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+  
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">КПІ ім. І. Сікорського</a>
+    </nav>
+  
+    <div class="container pt-4">
+      {% block body %}
+      {% endblock %}
+    </div>
+   
+<script>
+    const btnDelete= document.querySelectorAll('.btn-delete');
+    if(btnDelete) {
+        const btnArray = Array.from(btnDelete);
+        btnArray.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                if(!confirm('Ви точно хочете це зробити?')){
+                    e.preventDefault();
+                }
+            });
+        })
+    }
+  
+    $(document).ready(function() {
+        $('#example').DataTable({     
+            "aLengthMenu": [[5, 10, 15, 25, -1], [5, 10, 15, 25, "All"]],
+            "iDisplayLength": 5
+        });
+    });
+    
+    $(document).ready(function() {
+        $("input[name$='role']").click(function() {
+            var test = $(this).val();
+
+            $("div.desc").hide();
+            $("#Form1_" + test).show();
+            $("#Form2_" + test).show();
+        });
+    });
+
+</script>
+</body>
+</html>
